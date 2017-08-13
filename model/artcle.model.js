@@ -13,6 +13,14 @@ const ArticleSchema = new Schema({
   },
   content:{
     type:String
+  },
+  created:{
+    type:String,
+    default:new Date().toLocaleString()
+  },
+  updated:{
+    type:String,
+    default:new Date().toLocaleString()
   }
 })
 

@@ -10,8 +10,10 @@ const Article = require('../article/article.controller')
 
 module.exports  = function (app) {
   router.post('/login',login.login)
+  router.get('/register',login.register)
   router.post('/article/publish',Article.publish)
   router.get('/article/list',Article.articleList)
+  router.post('/article/delete/:id',Article.deletaArticleById)
   app
     .use(router.routes())
     .use(router.allowedMethods());

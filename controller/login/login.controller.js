@@ -39,3 +39,13 @@ exports.login = async(ctx,next)=>{
   }
 
 }
+
+// 注册， 仅模拟用
+exports.register = async(ctx,next)=>{
+  try {
+    const user = await Login.create({username:"Maple",password:"123456"})
+    return ctx.body = user
+  }catch (err){
+    return ctx.body = err
+  }
+}
