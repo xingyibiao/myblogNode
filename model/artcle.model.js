@@ -11,6 +11,12 @@ const ArticleSchema = new Schema({
   _class:{
     type:String
   },
+  description:{
+    type:String
+  },
+  markdown:{
+    type:String
+  },
   content:{
     type:String
   },

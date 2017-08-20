@@ -6,8 +6,11 @@ const Article = require('../../model/artcle.model')
 
 // 发布文章
 exports.publish = async(ctx,next)=>{
+  const _id = ctx.request.body.id?ctx.request.body.id.replace(/(^\s+)|(\s+$)/g,''):''
   const header = ctx.request.body.title?ctx.request.body.title.replace(/(^\s+)|(\s+$)/g,''):''
   const _class = ctx.request.body.class?ctx.request.body.class.replace(/(^\s+)|(\s+$)/g,''):''
+  const description = ctx.request.body.description
+  const markdown = ctx.request.body.markdown
   const content = ctx.request.body.content
   const created = new Date().toLocaleString()
   const updated = new Date().toLocaleString()
@@ -24,7 +27,12 @@ exports.publish = async(ctx,next)=>{
     return ctx.body = { err_msg }
   }
   try {
-    const result = await Article.create({header,_class,content,created,updated})
+    let result
+    if(_id.length === 0){// 无id是新建文章
+      result = await Article.create({header,_class,description,content,markdown,created,updated})
+    }else{// 有id是更新文章
+      result = await Article.update({_id:_id},{header,_class,description,content,markdown,updated})
+    }
     if(result){
       return ctx.body = '文章保存成功'
     }else {
@@ -43,6 +51,17 @@ exports.articleList = async(ctx)=>{
     return ctx.body = result
   }catch (err){
     return ctx.body = err
+  }
+}
+
+// 根据id查询文章
+exports.getArticleById = async(ctx)=>{
+  let _id = ctx.params.id
+  try{
+    const result = await Article.find({_id})
+    return ctx.body = {code:1,result:result}
+  }catch (err){
+    return ctx.body = {code:0,result:err}
   }
 }
 
