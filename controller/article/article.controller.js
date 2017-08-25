@@ -47,7 +47,7 @@ exports.publish = async(ctx,next)=>{
 // 查看文章列表
 exports.articleList = async(ctx)=>{
   try {
-    const result = await Article.find()
+    const result = await Article.find().sort({updated:-1})
     return ctx.body = result
   }catch (err){
     return ctx.body = err
@@ -61,6 +61,17 @@ exports.getArticleById = async(ctx)=>{
     const result = await Article.find({_id})
     return ctx.body = {code:1,result:result}
   }catch (err){
+    return ctx.body = {code:0,result:err}
+  }
+}
+
+// 根据分类查找文章
+exports.getArticleByClass = async(ctx)=>{
+  let _class = ctx.params._class
+  try {
+    const result = await Article.find({_class}).sort({updated:-1})
+    return ctx.body = {code:1,result:result}
+  } catch (err){
     return ctx.body = {code:0,result:err}
   }
 }

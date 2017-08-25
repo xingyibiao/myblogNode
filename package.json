@@ -8,5 +8,23 @@
     "koa-router": "^7.2.1",
     "mongoose": "^4.11.6",
     "path": "^0.12.7"
-  }
+  },
+  "name": "koanode",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xingyibiao/myblogNode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xingyibiao/myblogNode/issues"
+  },
+  "homepage": "https://github.com/xingyibiao/myblogNode#readme",
+  "description": ""
 }

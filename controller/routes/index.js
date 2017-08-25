@@ -13,7 +13,8 @@ module.exports  = function (app) {
   router.get('/register',login.register)
   router.post('/article/publish',Article.publish)
   router.get('/article/list',Article.articleList)
-  router.get('/article/:id',Article.getArticleById)
+  router.get('/article/id/:id',Article.getArticleById)
+  router.get('/article/class/:_class',Article.getArticleByClass)
   router.post('/article/delete/:id',Article.deletaArticleById)
   app
     .use(router.routes())
